@@ -202,11 +202,11 @@ Projet Maven de type **WAR** (Webapp Java classique) :
 
 
 
-\## 4. Prérequis
+\ 4. Prérequis
 
 
 
-\- Java \*\*17+\*\*
+\- Java \*\*21+\*\*
 
 \- Maven \*\*3.8+\*\*
 
@@ -222,7 +222,7 @@ Projet Maven de type **WAR** (Webapp Java classique) :
 
 
 
-\## 5. Configuration MongoDB
+\ 5. Configuration MongoDB
 
 
 
