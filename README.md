@@ -202,27 +202,8 @@ Projet Maven de type **WAR** (Webapp Java classique) :
 
 
 
-\ 4. Prérequis
 
-
-
-\- Java \*\*21+\*\*
-
-\- Maven \*\*3.8+\*\*
-
-\- Tomcat \*\*10.1+\*\*
-
-\- MongoDB (local ou distant)  
-
-&nbsp; Exemple : `mongodb://localhost:27017/covoiturage`
-
-
-
----
-
-
-
-\ 5. Configuration MongoDB
+#5. Configuration MongoDB
 
 
 
@@ -230,9 +211,9 @@ Par défaut, la classe `MongoManager` est configurée pour se connecter à :
 
 
 
-```java
+java
 
-// exemple typique :
+exemple typique :
 
 MongoClient client = MongoClients.create("mongodb://localhost:27017");
 
