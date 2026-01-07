@@ -1,0 +1,281 @@
+@charset "UTF-8";
+
+/* ========= BASE GLOBALE / PALETTE ========= */
+
+:root {
+    /* Palette principale: bleu et accent orange */
+    --app-primary: #2563eb;       /* bleu principal */
+    --app-primary-dark: #1d4ed8;  /* bleu foncé pour hover */
+    --app-accent: #f97316;        /* orange accent (nav active) */
+
+    --app-bg: #f4f4f7;            /* fond général très clair */
+    --app-surface: #ffffff;       /* fond des cartes */
+    --app-text: #111827;          /* texte principal */
+}
+
+/* Décalage pour ne pas que la navbar fixe recouvre le contenu */
+body {
+    padding-top: 70px; /* à cause de la navbar fixe */
+    font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--app-bg);
+    color: var(--app-text);
+}
+
+/* Limite un peu la largeur pour un rendu plus "app" */
+.container,
+.container-fluid {
+    max-width: 1200px;
+}
+
+/* ========= NAVBAR ========= */
+
+/* On garde tes classes Bootstrap: navbar-dark bg-dark */
+.navbar-dark.bg-dark {
+    background: linear-gradient(90deg, #020617, #0b1220, #111827);
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.3);
+}
+
+.navbar-brand {
+    font-size: 1.1rem;
+}
+
+/* Lien actif dans la navbar (page courante) */
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-brand.active {
+    background-color: var(--app-accent);   /* orange */
+    border-radius: 999px;
+    color: #ffffff !important;
+    padding-inline: 1rem;
+}
+
+/* Survol des liens */
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #e5e7eb;
+}
+
+/* ========= HERO D'ACCUEIL ========= */
+
+.hero-home {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.25), transparent 50%),
+        linear-gradient(135deg, #2563eb, #1d4ed8 45%, #0f172a 100%);
+    color: #fff;
+}
+
+/* Motif léger par-dessus */
+.hero-home::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.12;
+    background-image:
+        radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.35) 1px, transparent 0);
+    background-size: 22px 22px;
+    pointer-events: none;
+}
+
+.hero-home > .row,
+.hero-home > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ========= CARTES (trajets, réservations, étapes) ========= */
+
+.ride-card,
+.reservation-card,
+.step-card {
+    background-color: var(--app-surface);
+    border-radius: 0.9rem;
+    border: 1px solid rgba(15, 23, 42, 0.05);
+    transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
+}
+
+.ride-card:hover,
+.reservation-card:hover,
+.step-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(15, 23, 42, 0.12);
+}
+
+/* Étapes "Comment ça marche ?" */
+.step-card {
+    background-color: #ffffff;
+}
+
+.step-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background-color: rgba(37, 99, 235, 0.12);
+    color: var(--app-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* ========= BOUTONS ========= */
+
+.btn-primary {
+    background-color: var(--app-primary);
+    border-color: var(--app-primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--app-primary-dark);
+    border-color: var(--app-primary-dark);
+}
+
+.btn-outline-primary {
+    color: var(--app-primary);
+    border-color: var(--app-primary);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--app-primary);
+    color: #ffffff;
+}
+
+/* Variante clair (pour le hero) */
+.btn-outline-light {
+    border-width: 1px;
+}
+
+/* ========= BADGES STATUT ========= */
+
+.badge.bg-success {
+    background-color: #16a34a !important;
+}
+
+.badge.bg-danger {
+    background-color: #dc2626 !important;
+}
+
+.badge.bg-warning {
+    background-color: #fbbf24 !important;
+}
+
+/* ========= FORMULAIRES ========= */
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--app-primary);
+    box-shadow: 0 0 0 0.1rem rgba(37, 99, 235, 0.25);
+}
+
+/* ========= ALERTES ========= */
+
+.alert-info {
+    background-color: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1e293b;
+}
+
+/* Pour aérer un peu les sections */
+.container .row + .row {
+    margin-top: 1rem;
+}
+
+/* ========= RESPONSIVE ========= */
+
+@media (max-width: 576px) {
+
+    body {
+        padding-top: 60px;
+    }
+
+    .hero-home {
+        padding: 1.75rem 1.25rem !important;
+        text-align: center;
+    }
+
+    .hero-home h1 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+
+    .hero-home .lead {
+        font-size: 0.95rem;
+    }
+
+    .hero-home .btn-lg {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-home .d-flex.flex-wrap.gap-2 {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .ride-card:hover,
+    .reservation-card:hover,
+    .step-card:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12);
+    }
+
+    .ride-card,
+    .reservation-card {
+        margin-bottom: 0.25rem;
+    }
+}
+
+
+/* ====== ITINÉRAIRE VERTICAL (page booking) ====== */
+
+.itinerary-timeline {
+    position: relative;
+    padding-left: 1.8rem;      /* espace à gauche pour le trait */
+    margin-top: 0.25rem;
+}
+
+.itinerary-stop {
+    position: relative;
+    padding-bottom: 0.7rem;
+}
+
+/* petit rond bleu */
+.itinerary-stop-dot {
+    position: absolute;
+    left: 0;
+    top: 0.25rem;
+    width: 11px;
+    height: 11px;
+    border-radius: 999px;
+    background-color: var(--app-primary);
+}
+
+/* trait vertical gris */
+.itinerary-stop-line {
+    position: absolute;
+    left: 5px;                 /* milieu du rond ci-dessus */
+    top: 0.25rem;
+    bottom: -0.4rem;
+    width: 2px;
+    background-color: #e5e7eb;
+}
+
+/* ne pas prolonger la ligne après le dernier point */
+.itinerary-stop-last .itinerary-stop-line {
+    bottom: 0;
+}
+
+/* texte à droite du trait */
+.itinerary-stop-label {
+    font-size: 0.9rem;
+    margin-left: 1.4rem;
+}
+
+/* départ / arrivée un peu mis en avant */
+.itinerary-stop-first .itinerary-stop-label,
+.itinerary-stop-last .itinerary-stop-label {
+    font-weight: 600;
+}
