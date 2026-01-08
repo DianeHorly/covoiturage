@@ -40,16 +40,7 @@ Elle permet :
 
 ---
 
-##2. Structure du projet
-
-
-<<<<<<< HEAD
-
-#5. Configuration MongoDB
-
-
-
-Par défaut, la classe `MongoManager` est configurée pour se connecter à java.
+## 2. Structure du projet
 
 Racine du projet :
 
@@ -67,7 +58,7 @@ Racine du projet :
 ---
 
 
-##  Configuration MongoDB
+## 3. Configuration MongoDB
 
 La connexion Mongo est gérée dans `com.covoit.covoiturage.config.MongoManager` ou `src/main/java/com/covoit/covoiturage/config/MongoManager.java`
 :
@@ -75,28 +66,26 @@ La connexion Mongo est gérée dans `com.covoit.covoiturage.config.MongoManager`
 ```java
 ConnectionString cs = new ConnectionString("mongodb://localhost:27017");
 MongoDatabase database = client.getDatabase("covoiturage");
-
+```
 - Hôte: localhost
 - Port: 27017
 - Base: covoiturage
 MongoDB crée automatiquement la base et les collections à la première insertion.
-```
+
 
 ---
 
-## Lancer l'application avec Docker
-### 1. Prérequis
+## 4. Lancer l'application avec Docker
+### 4.1. Prérequis
 - Installer Docker
 - Installer Compose
 - instller Maven
 
-### 2. Conteneurs utilisés
-
+### 4.2. Conteneurs utilisés
 - MongoDB (image mongo:8.0)
 - Application Java (image construite à partir du Dockerfile -> Tomcat 10 et .war)
 
-### 3. Fichiers importants
-
+### 4.3. Fichiers importants
 - Dockerfile (à la racine) : build Maven et déploiement sur Tomcat.
 - docker-compose.yml (à la racine) :
  *. Lance MongoDB
@@ -105,23 +94,22 @@ MongoDB crée automatiquement la base et les collections à la première inserti
  *. MongoDB -> localhost:27017
  *. App -> localhost:8082 (vers Tomcat 8080 dans le conteneur)
 
-### 4. Construction de l'image de l’application
+### 4.4. Construction de l'image de l’application
 Depuis la racine du projet :
-```docker build -t covoiturage-app .
-```
+```docker build -t covoiturage-app .```
 
-### 5. Lancement avec Docker Compose
+## 5. Lancement avec Docker Compose
 
 Toujours à la racine du projet :
-```docker compose up -d
-```
+```docker compose up -d```
+
 Après ces étapes, l'application sera disponible sur: 
-```http://localhost:8082/covoiturage```
+```[http://localhost:8082/covoiturage]```
 
 ---
 
-## Lancement de l'application sans Docker (local/Tomcat)
-###1. Prérequis
+## 6. Lancement de l'application sans Docker (local/Tomcat)
+### 6.1. Prérequis
 
 - Java 21 installé (et dans le PATH)
 
@@ -131,88 +119,59 @@ Après ces étapes, l'application sera disponible sur:
 
 - MongoDB installé localement ou via Docker (port 27017)
 
-###2.  Lancer MongoDB
+###  6.2. Lancer MongoDB
 
-- Soit via Docker :
-
-```docker run -d --name covoiturage-mongo -p 27017:27017 mongo:8.0```
-
-
+- Soit via Docker :```docker run -d --name covoiturage-mongo -p 27017:27017 mongo:8.0```
 - Soit via l'installation native MongoDB.
 
-###3. Construire le .war
+### 6.3. Construire le .war
 
-À la racine du projet :
-
-```mvn clean package```
-
+À la racine du projet :```mvn clean package```
 
 Le .war sera généré dans :
-*target/covoiturage.war
+*target/covoiturage.war*
 
-###4. Déployer sur Tomcat
-
+### 6.4. Déployer sur Tomcat
 - Copier target/covoiturage.war dans le dossier webapps de Tomcat
-
 - Démarrer Tomcat
-
 - Accéder à l'application :
- [ http://localhost:8080/covoiturage]
+ [http://localhost:8080/covoiturage]
 
 ---
 
-##Tests unitaires
+## 7. Tests unitaires
 
-Lancer les tests :
-
-```mvn test```
-
-
+Lancer les tests : ```mvn test```
 Les tests couvrent notamment :
-
-La logique métier des trajets (Ride, calcul des segments, prix par sous-trajet)
-
-Les services (RideService, BookingService)
-
-La gestion des réservations par segment
+  - La logique métier des trajets (Ride, calcul des segments, prix par sous-trajet)
+  - Les services (RideService, BookingService)
+  - La gestion des réservations par segment
 
 ---
 
-##Fonctionnalités principales
+## 8. Fonctionnalités principales
 
 - Création de trajet :
-
--- Villes de départ / arrivée
-
--- Date / heure
-
--- Nombre de places
-
--- Prix global par place
-
--- Arrêts intermédiaires (stops)
-
--- Prix par segment (via new_ride.js et champ caché segmentPricesCsv)
+  - Villes de départ / arrivée
+  - Date / heure
+  - Nombre de places
+  - Prix global par place
+  - Arrêts intermédiaires (stops)
+  - Prix par segment (via new_ride.js et champ caché segmentPricesCsv)
 
 - Recherche de trajets :
-
--- Par ville de départ / arrivée / date
-
--- Gestion des sous-trajets (ex : réserver seulement Reims → Paris sur un trajet Reims → Paris → Lyon → Nice)
+  - Par ville de départ / arrivée / date
+  - Gestion des sous-trajets (ex : réserver seulement Reims → Paris sur un trajet Reims → Paris → Lyon → Nice)
 
 - Réservation :
+  - Calcul des places restantes par segment
+  - Prix ajusté au sous-trajet
+  - Statuts : PENDING, CONFIRMED, REJECTED
+  - QR Code pour le ticket (via ZXing) 
 
--- Calcul des places restantes par segment
+---
 
--- Prix ajusté au sous-trajet
-
--- Statuts : PENDING, CONFIRMED, REJECTED
-
--- QR Code pour le ticket (via ZXing) 
-
-
-
-## Exécuter le projet avec Eclipse
+## 9. Exécuter le projet avec Eclipse
 
 ### Prérequis
 
@@ -224,46 +183,41 @@ La gestion des réservations par segment
 
 ### Import du projet Maven dans Eclipse
 
-1. `File` -> `Import...`
-2. `Maven` -> **Existing Maven Projects** -> `Next`
-3. Choisir le dossier du projet `covoiturage`
-4. Cocher le projet trouvé -> `Finish`
+  - `File` -> `Import...`
+  - `Maven` -> **Existing Maven Projects** -> `Next`
+  - Choisir le dossier du projet `covoiturage`
+  - Cocher le projet trouvé -> `Finish`
 
 ### Mise à jour Maven
 
 Après toute modification de `pom.xml` :
-
-1. Clic droit sur le projet -> `Maven` ->**Update Project…**
-2. Cocher le projet -> `OK`
+  - Clic droit sur le projet -> `Maven` ->**Update Project…**
+  - Cocher le projet -> `OK`
 
 ### Configuration de Tomcat dans Eclipse et Import dans Eclipse
 
-1.File -> Import folder -> Existing Maven Projects
-
-2. Choisir le dossier du projet covoiturage
-
-3. Vérifier :
-
-- Java 21 comme JDK
-
-- Tomcat 10 configuré dans l’onglet Servers
+  - File -> Import folder -> Existing Maven Projects
+  - Choisir le dossier du projet covoiturage
+  - Vérifier :
+      - Java 21 comme JDK
+      - Tomcat 10 configuré dans l’onglet Servers
 
 4. Déployer le projet sur Tomcat depuis Eclipse.
 
-###Si Tomcat n'est pas configuré alors:
+### Si Tomcat n'est pas configuré alors:
 1. `Window` -> `Show View` -> `Servers`
 2. Dans la vue **Servers**, cliquer sur le lien *"No servers are available..."*
 3. Choisir **Apache Tomcat v10.1** (ou version 10.x compatible Jakarta)
 4. Indiquer le chemin d’installation de Tomcat -> `Finish`
 
-####Associer le projet au serveur :
+#### Associer le projet au serveur :
 
 1. Dans la vue *Servers*, double-cliquer sur `Tomcat v10.1 Server at localhost`
 2. Cliquer sur **“Add and Remove…”**
 3. Sélectionner le projet `covoiturage` dans la colonne de gauche
 4. Cliquer sur **Add >** -> `Finish`
 
-####Cibler Tomcat comme runtime :
+#### Cibler Tomcat comme runtime :
 
 1. Clic droit sur le projet -> `Properties`
 2. `Targeted Runtimes`
@@ -281,19 +235,17 @@ Une fois Tomcat démarré, ouvrir dans le navigateur :
 
 - Liste des trajets :  
   `http://localhost:8080/covoiturage/rides`
-
-> Le context path `covoiturage` est défini par `<finalName>covoiturage</finalName>` dans le `pom.xml`.
+ Le context path `covoiturage` est défini par `<finalName>covoiturage</finalName>` dans le `pom.xml`.
 
 ---
 
-#Exécution de ce projet chez soi
-##1. Cloner le dépôt :
+# Exécution de ce projet chez soi
+## 1. Cloner le dépôt :
 
-```git clone https://github.com/<ton-compte>/covoiturage.git
-cd covoiturage
-```
+```git clone https://github.com/<ton-compte>/covoiturage.git```
+```cd covoiturage```
 
-##2. Lancer via Docker :
+## 2. Lancer via Docker :
 - installer avant docker desktop, puis saissiser ces commandes: ```docker build -t covoiturage-app .
 docker compose up -d```
 Ça génère target/covoiturage.war.
@@ -302,10 +254,10 @@ docker compose up -d```
 cp target/covoiturage.war /chemin/vers/tomcat/webapps/```
 
 - Démarrer Tomcat :
-```./bin/startup.sh    # Linux / macOS
-bin\startup.bat     # Windows```
+```./bin/startup.sh    # Linux / macOS```
+```bin\startup.bat     # Windows```
 
 - Accéder à l'app: *http://localhost:8080/covoiturage/*
 
-##3. Ouvrir le navigateur sur :
-*http://localhost:8082/covoiturage*
+## 3. Ouvrir le navigateur sur :
+[http://localhost:8082/covoiturage]
