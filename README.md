@@ -104,7 +104,7 @@ Toujours à la racine du projet :
 ```docker compose up -d```
 
 Après ces étapes, l'application sera disponible sur: 
-```[http://localhost:8082/covoiturage]```
+```http://localhost:8082/covoiturage```
 
 ---
 
@@ -129,13 +129,13 @@ Après ces étapes, l'application sera disponible sur:
 À la racine du projet :```mvn clean package```
 
 Le .war sera généré dans :
-*target/covoiturage.war*
+**target/covoiturage.war**
 
 ### 6.4. Déployer sur Tomcat
 - Copier target/covoiturage.war dans le dossier webapps de Tomcat
 - Démarrer Tomcat
 - Accéder à l'application :
- [http://localhost:8080/covoiturage]
+  *http://localhost:8080/covoiturage*
 
 ---
 
@@ -177,7 +177,7 @@ Les tests couvrent notamment :
 
 - Java 21 installé (JAVA_HOME configuré)
 - Apache Tomcat 10.1+ (compatible Jakarta Servlet 6.0)
-- MongoDB en local sur `mongodb://localhost:27017`
+- MongoDB en local sur *`mongodb://localhost:27017`*
   - base utilisée : `covoiturage`
 - Eclipse IDE avec support Maven (m2e)
 
@@ -231,10 +231,10 @@ Après toute modification de `pom.xml` :
 Une fois Tomcat démarré, ouvrir dans le navigateur :
 
 - Page d'accueil :  
-  `http://localhost:8080/covoiturage/home`
+  *`http://localhost:8080/covoiturage/home`*
 
 - Liste des trajets :  
-  `http://localhost:8080/covoiturage/rides`
+  *`http://localhost:8080/covoiturage/rides`*
  Le context path `covoiturage` est défini par `<finalName>covoiturage</finalName>` dans le `pom.xml`.
 
 ---
@@ -254,10 +254,12 @@ docker compose up -d```
 cp target/covoiturage.war /chemin/vers/tomcat/webapps/```
 
 - Démarrer Tomcat :
-```./bin/startup.sh    # Linux / macOS```
-```bin\startup.bat     # Windows```
+```./bin/startup.sh    # sur Linux / macOS```
+```bin\startup.bat     # sur Windows```
 
 - Accéder à l'app: *http://localhost:8080/covoiturage/*
 
 ## 3. Ouvrir le navigateur sur :
-[http://localhost:8082/covoiturage]
+*http://localhost:8082/covoiturage*
+
+---
