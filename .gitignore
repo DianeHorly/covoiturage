@@ -1,0 +1,60 @@
+########################
+# Maven / Java
+########################
+target/
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Fichiers générés par Maven
+dependency-reduced-pom.xml
+release.properties
+
+########################
+# IDE : Eclipse
+########################
+.classpath
+.project
+.settings/
+.apt_generated/
+.factorypath
+.metadata/
+.recommenders/
+.loadpath
+
+# Serveurs Eclipse (Tomcat, etc.)
+Servers/
+
+########################
+# IDE : IntelliJ / autres (au cas où)
+########################
+.idea/
+*.iml
+*.iws
+out/
+
+########################
+# OS : Windows / macOS
+########################
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+########################
+# Divers
+########################
+# Dossiers de logs
+logs/
+*.log
+
+# Fichiers de sauvegarde d'éditeur
+*~
+*.orig
